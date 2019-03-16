@@ -1,30 +1,31 @@
 //
-//  ViewController.swift
-//  UIPickerViewRowHeight
+//  ViewControllerTwo.swift
+//  PIckerViews
 //
 //  Created by Anuradh Caldera on 3/16/19.
 //  Copyright © 2019 Anuradh Caldera. All rights reserved.
 //
 
 /*
- THIS IS A SIMPLE PICKER VIEW : SEE OTHERS FOR DIFFERENT PICKER VIEWS
-*/
+ THIS SECTION WILL SHOW HOW TO CHANGE THE ROW HEIGH 
+ */
 
 import UIKit
 
-class ViewControllerOne: BaseViewController {
+class ViewControllerTwo: BaseViewController {
     
     private var pickerView: UIPickerView!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        headTitle.text = "⌦  SIMPLE PICKER VIEW"
+        
+        headTitle.text = "⌦  CHANGED ROW HEIGHT PICKER VIEW "
         setPickerView()
     }
 }
 
 //MARK: Setup PickerView
-extension ViewControllerOne {
+extension ViewControllerTwo {
     fileprivate func setPickerView() {
         pickerView = UIPickerView()
         pickerView.translatesAutoresizingMaskIntoConstraints = false
@@ -41,7 +42,7 @@ extension ViewControllerOne {
 }
 
 //MARK: Implement PickerView Delegate and Datasource methods
-extension ViewControllerOne: UIPickerViewDelegate, UIPickerViewDataSource {
+extension ViewControllerTwo: UIPickerViewDelegate, UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -53,11 +54,16 @@ extension ViewControllerOne: UIPickerViewDelegate, UIPickerViewDataSource {
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return "hello \(row)"
     }
+    
+    func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
+        return UIScreen.main.bounds.height/10
+    }
 }
 
 //MARK: Go Back
-extension ViewControllerOne {
+extension ViewControllerTwo {
     override func swipeRight() {
         self.dismiss(animated: true, completion: nil)
     }
 }
+
